@@ -1,2 +1,2 @@
-# tabify
+# Tabify
 Simple tabs module.
