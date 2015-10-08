@@ -59,7 +59,7 @@
         t.end();
     });
 
-    test('remove: tab', t => {
+    test('remove: existing tab', t => {
         let tabify = Tabify,
             tab    = {name: 'testTab'},
             fn     = function () {
@@ -69,6 +69,17 @@
             };
 
         t.deepEqual(fn(), []);
+        t.end();
+    });
+
+    test('remove: wrong tab', t => {
+        let tabify = Tabify,
+            tab    = {name: 'notProperName'},
+            fn     = function () {
+                tabify.remove(tab.name);
+            };
+
+        t.throws(fn, 'no tab with ' + tab.name + ' file name!', 'should throw when no proper tab');
         t.end();
     });
 })();
