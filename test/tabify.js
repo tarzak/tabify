@@ -51,12 +51,11 @@
         let tabify   = Tabify,
             fileName = 'testTab',
             tab      = {name: 'testTab'},
-            fn       = function () {
-                console.log(tabify.get('testTab'));
+            fn       = function (fileName) {
                 return tabify.get(fileName);
             };
         
-        t.deepEqual(fn(), [tab])
+        t.deepEqual(fn(fileName), [tab])
         t.end();
     });
 
