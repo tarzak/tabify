@@ -1,0 +1,26 @@
+{
+  "name": "tabify",
+  "version": "0.0.9",
+  "description": "simple tabs module",
+  "main": "lib/tabify.js",
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tarzak/tabify.git"
+  },
+  "keywords": [
+    "tab",
+    "tabs"
+  ],
+  "author": "tarzak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tarzak/tabify/issues"
+  },
+  "homepage": "https://github.com/tarzak/tabify",
+  "devDependencies": {
+    "tape": "~4.2.0"
+  }
+}
