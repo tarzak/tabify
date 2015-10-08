@@ -6,43 +6,53 @@ Simple tabs module.
 What you should do first is create new instance of `tabify` with 
 
 ```js
-var tabify = Tabify;
+var tabs = tabify();
 ```
 
 Than you could just use API as it is.
 
-### tabify.add(tabObject)
+### tabs.add(tabObject)
 
 Add new tab object which stores needed information about files in tabs list.
 
-### tabify.remove(fileName)
+### tabs.remove(fileName)
 
 Remove tab from tabs list by name of file.
 
-### tabify.get([fileName])
+### tabs.get([fileName])
 
 Get specific tab or all tabs in case of no argument. FileName should be string.
 
 ## How to use?
 
 ```js
-var Tabify = require('tabify'),
-    tabify = new Tabify(),
-    tabObject = {
-      name: 'fileName',
-      path: 'path',
-      data: 'hello world',
-      row: '25',
-      column: '11'
-    },
-    fileName = 'simpleName';
+var tabify  = require('tabify'),
+    tabs    =  tabify(),
+    name    = 'README.md';
+    
+tabs.add({
+    name: name,
+    path: '/' + name,
+    data: 'hello world',
+    row: '1',
+    column: '5'
+});
 
+tabs.get();
+// returns 
+[{
+    column: "5"
+    data: "hello world"
+    name: "README.md"
+    path: "/README.md"
+    row: "1"
+}]
 
-tabify.add(tabObject);
+tab.remove(name);
 
-tabify.get();
-
-tabify.remove(fileName);
+tabs.get();
+//returns
+[];
 
 ```
 
