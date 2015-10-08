@@ -19,7 +19,7 @@
     test('get: no argument', t => {
         let tabify = Tabify;
 
-        t.ok(tabify.get().constructor === Array, 'get with no argument should return array');
+        t.ok(Array.isArray(tabify.get()), 'get with no argument should return array of tabs');
         t.end();
     });
 
