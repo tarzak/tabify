@@ -30,19 +30,6 @@
         t.end();
     });    
 
-    test('remove: tab', t => {
-        let tabify = Tabify,
-            tab    = {name: 'testTab'},
-            fn     = function () {
-                tabify.remove(tab.name);
-
-                return tabify.get();
-            };
-
-        t.deepEqual(fn(), []);
-        t.end();
-    });
-
     test('get: no argument', t => {
         let tabify = Tabify;
 
@@ -57,6 +44,32 @@
             };
 
         t.throws(fn, /fileName should be string/, 'should throw when not string');
+        t.end();
+    });
+
+    test('get: with proper file name', t => {
+        let tabify   = Tabify,
+            fileName = 'testTab',
+            tab      = {name: 'testTab'},
+            fn       = function () {
+                console.log(tabify.get('testTab'));
+                return tabify.get(fileName);
+            };
+        
+        t.deepEqual(fn(), [tab])
+        t.end();
+    });
+
+    test('remove: tab', t => {
+        let tabify = Tabify,
+            tab    = {name: 'testTab'},
+            fn     = function () {
+                tabify.remove(tab.name);
+
+                return tabify.get();
+            };
+
+        t.deepEqual(fn(), []);
         t.end();
     });
 })();
