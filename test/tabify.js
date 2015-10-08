@@ -1,18 +1,19 @@
 (function() {
     'use strict';
     
-    let Tabify = require('../lib/tabify.js'),
+    let Tabify = require('..'),
         test   = require('tape');
 
     test('add: new tab', t => {
-        let tabify = Tabify,
-            fn     = function () {
-                tabify.add({name: 'testTab'});
+        let tabify  = Tabify,
+            tab     = {name: 'testTab'},
+            fn      = function () {
+                tabify.add(tab);
                 
                 return tabify.get();
             };
 
-        t.deepEqual(fn(), [{name: 'testTab'}]);
+        t.deepEqual(fn(), [tab]);
         t.end();
     });
 
@@ -32,7 +33,7 @@
     test('get: no argument', t => {
         let tabify = Tabify;
 
-        t.ok(tabify.get().constructor === Array, 'get with no argument should return array');
+        t.ok(Array.isArray(tabify.get()), 'get with no argument should return array of tabs');
         t.end();
     });
 
