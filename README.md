@@ -27,7 +27,7 @@ Get specific tab or all tabs in case of no argument. FileName should be string.
 
 ```js
 var tabify  = require('tabify'),
-    tabs    =  tabify(),
+    tabs    = tabify(),
     name    = 'README.md';
     
 tabs.add({
