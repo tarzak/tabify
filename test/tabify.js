@@ -16,6 +16,19 @@
         t.end();
     });
 
+    test('add: existing tab', t => {
+        let tabify = Tabify,
+            tab    = {name: 'testTab'},
+            fn     = function () {
+                tabify.add(tab);
+
+                tabify.add(tab);
+            };
+
+        t.throws(fn, 'Tab with name ' + tab.name + ' already exists', 'should throw when such tab already exist');
+        t.end()
+    })
+
     test('get: no argument', t => {
         let tabify = Tabify;
 
