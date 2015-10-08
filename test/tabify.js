@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     
-    let Tabify = require('../lib/tabify.js'),
+    let Tabify = require('..'),
         test   = require('tape');
 
     test('add: new tab', t => {
