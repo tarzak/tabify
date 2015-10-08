@@ -5,14 +5,15 @@
         test   = require('tape');
 
     test('add: new tab', t => {
-        let tabify = Tabify,
-            fn     = function () {
-                tabify.add({name: 'testTab'});
+        let tabify  = Tabify,
+            tab     = {name: 'testTab'},
+            fn      = function () {
+                tabify.add(tab);
                 
                 return tabify.get();
             };
 
-        t.deepEqual(fn(), [{name: 'testTab'}]);
+        t.deepEqual(fn(), [tab]);
         t.end();
     });
 
