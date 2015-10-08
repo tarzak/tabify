@@ -13,7 +13,7 @@ Than you could just use API as it is.
 
 ### tabify.add(tabObject)
 
-Add new tab object which stores needed information to tabs list.
+Add new tab object which stores needed information about files in tabs list.
 
 ### tabify.remove(fileName)
 
@@ -21,7 +21,7 @@ Remove tab from tabs list by name of file.
 
 ### tabify.get([fileName])
 
-Return specific tab or all tabs in case of no argument. FileName should be string.
+Get specific tab or all tabs in case of no argument. FileName should be string.
 
 ## How to use?
 
