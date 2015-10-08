@@ -1,13 +1,13 @@
 (function() {
     'use strict';
     
-    let Tabify = require('..'),
+    let Tabify = require('../lib/tabify.js'),
         test   = require('tape');
 
     test('add: new tab', t => {
-        let tabify  = Tabify,
-            tab     = {name: 'testTab'},
-            fn      = function () {
+        let tabify = Tabify,
+            tab    = {name: 'testTab'},
+            fn     = function () {
                 tabify.add(tab);
                 
                 return tabify.get();
@@ -27,13 +27,26 @@
             };
 
         t.throws(fn, 'Tab with name ' + tab.name + ' already exists', 'should throw when such tab already exist');
-        t.end()
-    })
+        t.end();
+    });    
+
+    test('remove: tab', t => {
+        let tabify = Tabify,
+            tab    = {name: 'testTab'},
+            fn     = function () {
+                tabify.remove(tab.name);
+
+                return tabify.get();
+            };
+
+        t.deepEqual(fn(), []);
+        t.end();
+    });
 
     test('get: no argument', t => {
         let tabify = Tabify;
 
-        t.ok(Array.isArray(tabify.get()), 'get with no argument should return array of tabs');
+        t.ok(tabify.get().constructor === Array, 'get with no argument should return array');
         t.end();
     });
 
