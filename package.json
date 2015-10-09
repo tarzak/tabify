@@ -5,7 +5,8 @@
   "main": "lib/tabify.js",
   "scripts": {
     "codestyle": "jscs --esnext lib test",
-    "test": "npm run codestyle && tape test/*.js"
+    "codehint": "jshint test",
+    "test": "npm run codehint && npm run codestyle && tape test/*.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "homepage": "https://github.com/tarzak/tabify",
   "devDependencies": {
     "jscs": "^2.3.0",
+    "jshint": "^2.8.0",
     "tape": "^4.2.0"
   }
 }
