@@ -1,4 +1,5 @@
-# Tabify
+# Tabify [![License][LicenseIMGURL]][LicenseURL] [![NPM version][NPMIMGURL]][NPMURL] [![Dependency Status][DependencyStatusIMGURL]][DependencyStatusURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL]
+
 Simple tabs module.
 
 ## API
@@ -59,3 +60,12 @@ tabs.get();
 ## License
 
 MIT
+
+[NPMIMGURL]:                https://img.shields.io/npm/v/tabify.svg?style=flat
+[BuildStatusIMGURL]:        https://img.shields.io/travis/tarzak/tabify/master.svg?style=flat
+[DependencyStatusIMGURL]:   https://img.shields.io/gemnasium/tarzak/tabify.svg?style=flat
+[LicenseIMGURL]:            https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
+[NPMURL]:                   https://npmjs.org/package/tabify "npm"
+[BuildStatusURL]:           https://travis-ci.org/tarzak/tabify  "Build Status"
+[DependencyStatusURL]:      https://gemnasium.com/tarzak/tabify "Dependency Status"
+[LicenseURL]:               https://tldrlegal.com/license/mit-license "MIT License"
