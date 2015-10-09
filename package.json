@@ -4,7 +4,8 @@
   "description": "simple tabs module",
   "main": "lib/tabify.js",
   "scripts": {
-    "test": "tape test/*.js"
+    "codestyle": "jscs --esnext lib test",
+    "test": "npm run codestyle && tape test/*.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/tarzak/tabify",
   "devDependencies": {
-    "tape": "~4.2.0"
+    "jscs": "^2.3.0",
+    "tape": "^4.2.0"
   }
 }
