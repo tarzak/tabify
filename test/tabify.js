@@ -5,42 +5,56 @@
         test   = require('tape');
 
     test('add: new tab', t => {
-        let tabify = Tabify,
-            tab    = {name: 'testTab'},
-            fn     = function () {
-                tabify.add(tab);
+        let tabs      = Tabify,
+            name      = 'README.md',
+            tabObject = {
+                name: name,
+                path: '/' + name,
+                data: 'hello world',
+                row: '1',
+                column: '5'
+            },
+            fn        = function () {
+                tabs.add(tabObject);
                 
-                return tabify.get();
+                return tabs.get();
             };
 
-        t.deepEqual(fn(), [tab]);
+        t.deepEqual(fn(), [tabObject]);
         t.end();
     });
 
     test('add: existing tab', t => {
-        let tabify = Tabify,
-            tab    = {name: 'testTab'},
-            fn     = function () {
-                tabify.add(tab);
+        let tabs      = Tabify,
+            name      = 'README.md',
+            tabObject = {
+                name: name,
+                path: '/' + name,
+                data: 'hello world',
+                row: '1',
+                column: '5'
+            },
+            fn        = function () {
+                tabs.add(tabObject);
 
-                tabify.add(tab);
+                tabs.add(tabObject);
             };
 
-        t.throws(fn, 'Tab with name ' + tab.name + ' already exists', 'should throw when such tab already exist');
+        t.throws(fn, 'Tab with name ' + tabObject.name + ' already exists', 'should throw when such tab already exist');
         t.end();
     });    
 
     test('get: no argument', t => {
-        let tabify = Tabify;
+        let tabs = Tabify;
 
-        t.ok(tabify.get().constructor === Array, 'get with no argument should return array');
+        t.ok(Array.isArray(tabs.get()), 'get with no argument should return array of tabs');
         t.end();
     });
 
     test('get: typeof argument not string', t => {
-        let tabify = Tabify,
+        let tabs = Tabify,
             fn = function () {
-                tabify.get(1);
+                tabs.get(1);
             };
 
         t.throws(fn, /fileName should be string/, 'should throw when not string');
@@ -48,38 +62,51 @@
     });
 
     test('get: with proper file name', t => {
-        let tabify   = Tabify,
-            fileName = 'testTab',
-            tab      = {name: 'testTab'},
-            fn       = function (fileName) {
-                return tabify.get(fileName);
+        let tabify    = Tabify,
+            name      = 'README.md',
+            tabObject = {
+                name: name,
+                path: '/' + name,
+                data: 'hello world',
+                row: '1',
+                column: '5'
+            },
+            fn        = function (name) {
+                return tabify.get(name);
             };
         
-        t.deepEqual(fn(fileName), [tab])
-        t.end();
-    });
-
-    test('remove: existing tab', t => {
-        let tabify = Tabify,
-            tab    = {name: 'testTab'},
-            fn     = function () {
-                tabify.remove(tab.name);
-
-                return tabify.get();
-            };
-
-        t.deepEqual(fn(), []);
+        t.deepEqual(fn(name), [tabObject])
         t.end();
     });
 
     test('remove: wrong tab', t => {
-        let tabify = Tabify,
-            tab    = {name: 'notProperName'},
-            fn     = function () {
-                tabify.remove(tab.name);
+        let tabs = Tabify,
+            name = 'wrongName.txt',
+            fn   = function () {
+                tabs.remove(name);
             };
 
-        t.throws(fn, 'no tab with ' + tab.name + ' file name!', 'should throw when no proper tab');
+        t.throws(fn, 'no tab with ' + name + ' file name!', 'should throw when no proper tab');
+        t.end();
+    });
+
+    test('remove: existing tab', t => {
+        let tabs      = Tabify,
+            name      = 'README.md',
+            tabObject = {
+                name: name,
+                path: '/' + name,
+                data: 'hello world',
+                row: '1',
+                column: '5'
+            },
+            fn        = function () {
+                tabs.remove(name);
+
+                return tabs.get();
+            };
+
+        t.deepEqual(fn(), []);
         t.end();
     });
 })();

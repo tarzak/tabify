@@ -48,7 +48,7 @@ tabs.get();
     row: "1"
 }]
 
-tab.remove(name);
+tabs.remove(name);
 
 tabs.get();
 //returns
