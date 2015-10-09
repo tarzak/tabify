@@ -2,11 +2,11 @@
     'use strict';
     
     let Tabify = require('..'),
-        test   = require('tape');
+        test   = require('tape'),
+        tabs = Tabify();
 
     test('add: new tab', t => {
-        let tabs      = Tabify,
-            name      = 'README.md',
+        let name      = 'README.md',
             tabObject = {
                 name: name,
                 path: '/' + name,
@@ -25,8 +25,7 @@
     });
 
     test('add: existing tab', t => {
-        let tabs      = Tabify,
-            name      = 'README.md',
+        let name      = 'README.md',
             tabObject = {
                 name: name,
                 path: '/' + name,
@@ -45,15 +44,12 @@
     });    
 
     test('get: no argument', t => {
-        let tabs = Tabify;
-
         t.ok(Array.isArray(tabs.get()), 'get with no argument should return array of tabs');
         t.end();
     });
 
     test('get: typeof argument not string', t => {
-        let tabs = Tabify,
-            fn = function () {
+            let fn = function () {
                 tabs.get(1);
             };
 
@@ -62,8 +58,7 @@
     });
 
     test('get: with proper file name', t => {
-        let tabify    = Tabify,
-            name      = 'README.md',
+        let name      = 'README.md',
             tabObject = {
                 name: name,
                 path: '/' + name,
@@ -72,7 +67,7 @@
                 column: '5'
             },
             fn        = function (name) {
-                return tabify.get(name);
+                return tabs.get(name);
             };
         
         t.deepEqual(fn(name), [tabObject])
@@ -80,8 +75,7 @@
     });
 
     test('remove: wrong tab', t => {
-        let tabs = Tabify,
-            name = 'wrongName.txt',
+        let name = 'wrongName.txt',
             fn   = function () {
                 tabs.remove(name);
             };
@@ -91,8 +85,7 @@
     });
 
     test('remove: existing tab', t => {
-        let tabs      = Tabify,
-            name      = 'README.md',
+        let name      = 'README.md',
             tabObject = {
                 name: name,
                 path: '/' + name,
