@@ -1,18 +1,53 @@
 (function() {
     'use strict';
     
-    let Tabify = require('..'),
-        test   = require('tape'),
-        tabs = Tabify();
+    var Tabify = require('..'),
+        test   = require('tape');
 
-    test('add: new tab', t => {
-        let name      = 'README.md',
+    test('add: new tab with some empty or missed fields', t => {
+        let tabs      = Tabify(),
+            name      = 'README.md',
+            tabObject = {
+                name: name,
+                path: '/' + name,
+                data: '',
+                row: 1,
+            },
+            fn        = function () {
+                tabs.add(tabObject);
+            };
+
+        t.throws(fn, /some fields are missing or have no values/, 'should throw when data in tabs is disappeared');
+        t.end();
+    });
+
+    test('add: new tab with some empty or missed fields', t => {
+        let tabs      = Tabify(),
+            name      = 'README.md',
             tabObject = {
                 name: name,
                 path: '/' + name,
                 data: 'hello world',
                 row: '1',
-                column: '5'
+                column: 5
+            },
+            fn        = function () {
+                tabs.add(tabObject);
+            };
+
+        t.throws(fn, 'some fields contain values of a wrong type', 'should throw when data in tabs is of incorrect type');
+        t.end();
+    });
+
+    test('add: new tab', t => {
+        let tabs      = Tabify(),
+            name      = 'README.md',
+            tabObject = {
+                name: name,
+                path: '/' + name,
+                data: 'hello world',
+                row: 1,
+                column: 5
             },
             fn        = function () {
                 tabs.add(tabObject);
@@ -25,13 +60,14 @@
     });
 
     test('add: existing tab', t => {
-        let name      = 'README.md',
+        let tabs      = Tabify(),
+            name      = 'README.md',
             tabObject = {
                 name: name,
                 path: '/' + name,
                 data: 'hello world',
-                row: '1',
-                column: '5'
+                row: 1,
+                column: 5
             },
             fn        = function () {
                 tabs.add(tabObject);
@@ -41,15 +77,18 @@
 
         t.throws(fn, 'Tab with name ' + tabObject.name + ' already exists', 'should throw when such tab already exist');
         t.end();
-    });    
+    });
 
     test('get: no argument', t => {
+        let tabs     = Tabify();
+            
         t.ok(Array.isArray(tabs.get()), 'get with no argument should return array of tabs');
         t.end();
     });
 
     test('get: typeof argument not string', t => {
-            let fn = function () {
+            let tabs = Tabify(),
+                fn   = function () {
                 tabs.get(1);
             };
 
@@ -58,24 +97,27 @@
     });
 
     test('get: with proper file name', t => {
-        let name      = 'README.md',
+        let tabs      = Tabify(),
+            name      = 'README.md',
             tabObject = {
                 name: name,
                 path: '/' + name,
                 data: 'hello world',
-                row: '1',
-                column: '5'
+                row: 1,
+                column: 5
             },
             fn        = function (name) {
+                tabs.add(tabObject);
                 return tabs.get(name);
             };
         
-        t.deepEqual(fn(name), [tabObject])
+        t.deepEqual(fn(name), [tabObject]);
         t.end();
     });
 
     test('remove: wrong tab', t => {
-        let name = 'wrongName.txt',
+        let tabs = Tabify(),
+            name = 'wrongName.txt',
             fn   = function () {
                 tabs.remove(name);
             };
@@ -85,15 +127,17 @@
     });
 
     test('remove: existing tab', t => {
-        let name      = 'README.md',
+        let tabs      = Tabify(),
+            name      = 'README.md',
             tabObject = {
                 name: name,
                 path: '/' + name,
                 data: 'hello world',
-                row: '1',
-                column: '5'
+                row: 1,
+                column: 5
             },
             fn        = function () {
+                tabs.add(tabObject);
                 tabs.remove(name);
 
                 return tabs.get();
