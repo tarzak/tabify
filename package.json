@@ -5,7 +5,7 @@
   "main": "lib/tabify.js",
   "scripts": {
     "codestyle": "jscs --esnext lib test",
-    "codehint": "jshint test",
+    "codehint": "jshint lib test",
     "test": "npm run codehint && npm run codestyle && tape test/*.js"
   },
   "repository": {
