@@ -34,18 +34,18 @@ tabs.add({
     name: name,
     path: '/' + name,
     data: 'hello world',
-    row: '1',
-    column: '5'
+    row: 1,
+    column: 5
 });
 
 tabs.get();
 // returns 
 [{
-    column: "5"
-    data: "hello world"
-    name: "README.md"
-    path: "/README.md"
-    row: "1"
+    name: "README.md",
+    path: "/README.md",
+    data: "hello world",
+    row: 1,
+    column: 5
 }]
 
 tabs.remove(name);
