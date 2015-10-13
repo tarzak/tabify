@@ -17,11 +17,11 @@
                 tabs.add(tabObject);
             };
 
-        t.throws(fn, /some fields are missing or have no values/, 'should throw when data in tabs is disappeared');
+        t.throws(fn, /some fields are missing or have no values/, 'should throw when data in tabs is missing');
         t.end();
     });
 
-    test('add: new tab with some empty or missed fields', t => {
+    test('add: new tab with values of a wrong type', t => {
         let tabs      = Tabify(),
             name      = 'README.md',
             tabObject = {
@@ -35,7 +35,7 @@
                 tabs.add(tabObject);
             };
 
-        t.throws(fn, 'some fields contain values of a wrong type', 'should throw when data in tabs is of incorrect type');
+        t.throws(fn, /some fields contain values of a wrong type/, 'should throw when data in tabs is of incorrect type');
         t.end();
     });
 
