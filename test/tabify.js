@@ -3,39 +3,35 @@
     
     var Tabify = require('..'),
         test   = require('tape');
-
-    test('add: new tab with some empty or missed fields', t => {
-        let tabs      = Tabify(),
-            name      = 'README.md',
-            tabObject = {
-                name: name,
-                path: '/' + name,
-                data: '',
-                row: 1,
-            },
-            fn        = function () {
-                tabs.add(tabObject);
-            };
-
-        t.throws(fn, /some fields are missing or have no values/, 'should throw when data in tabs is missing');
-        t.end();
-    });
-
+    
     test('add: new tab with values of a wrong type', t => {
-        let tabs      = Tabify(),
-            name      = 'README.md',
-            tabObject = {
-                name: name,
-                path: '/' + name,
-                data: 'hello world',
-                row: '1',
-                column: 5
-            },
-            fn        = function () {
-                tabs.add(tabObject);
+        let tabs    = Tabify(),
+            tab     = {},
+            fn      = function () {
+                tabs.add(tab);
             };
-
-        t.throws(fn, /some fields contain values of a wrong type/, 'should throw when data in tabs is of incorrect type');
+        
+        tab.name = 1;
+        t.throws(fn, /tab.name should be string!/, 'should throw when name not string');
+        tab.name = '';
+        
+        tab.path = 1;
+        t.throws(fn, /tab.path should be string!/, 'should throw when path not string');
+        tab.path = '';
+        
+        tab.data = 1;
+        t.throws(fn, /tab.data should be string!/, 'should throw when data not string');
+        tab.data = '';
+        
+        tab.row = '';
+        t.throws(fn, /tab.row should be number!/, 'should throw when row not number');
+        tab.row = 1;
+        
+        tab.column = '';
+        t.throws(fn, /tab.column should be number!/, 'should throw when column not number');
+        tab.column = 1;
+        
+        t.doesNotThrow(fn, 'should not throw when all fields have normal values');
         t.end();
     });
 
