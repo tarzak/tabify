@@ -3,6 +3,37 @@
     
     var Tabify = require('..'),
         test   = require('tape');
+
+    test('contains path', t => {
+        let tabs    = Tabify(),
+            name    = 'README.md',
+            path    = '/test',
+            tab     = {
+                name: name,
+                path: path,
+                data: 'hello world',
+                row: 1,
+                column: 5
+            },
+            fn      = function () {
+                tabs.add(tab);
+                tabs.contains(path);
+            };
+
+        t.ok(fn, 'contains already existing path, should return true');
+        t.end();
+    });
+
+    test('does not contain path', t => {
+        let tabs    = Tabify(),
+            path    = '/test',
+            fn      = function () {
+                tabs.contains(path);
+            };
+
+        t.notOk(fn(), 'does not contain specific path');
+        t.end();
+    });
     
     test('add: new tab with values of a wrong type', t => {
         let tabs    = Tabify(),
