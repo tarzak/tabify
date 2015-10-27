@@ -14,24 +14,18 @@
                 data: 'hello world',
                 row: 1,
                 column: 5
-            },
-            fn      = function () {
-                tabs.add(tab);
-                tabs.contains(path);
             };
 
-        t.ok(fn, 'contains already existing path, should return true');
+        tabs.add(tab);
+        t.ok(tabs.contains(path), 'contains already existing path, should return true');
         t.end();
     });
 
     test('does not contain path', t => {
         let tabs    = Tabify(),
-            path    = '/test',
-            fn      = function () {
-                tabs.contains(path);
-            };
+            path    = '/test';
 
-        t.notOk(fn(), 'does not contain specific path');
+        t.notOk(tabs.contains(path), 'does not contain specific path');
         t.end();
     });
     
